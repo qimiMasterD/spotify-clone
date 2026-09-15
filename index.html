@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -28,7 +28,11 @@
                 <nav class="sidebar-nav">
                     <div class="nav-section">
                         <h2 class="section-title">Your Library</h2>
-                        <button class="create-btn">
+                        <button
+                            class="create-btn"
+                            data-tooltip="Create a playlist, folder or Jam"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-plus"></i>
                             Create
                         </button>
@@ -40,13 +44,70 @@
                     </div>
 
                     <div class="search-library">
-                        <button class="search-library-btn">
+                        <button
+                            class="search-library-btn"
+                            data-tooltip="Search in Your Library"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-search"></i>
                         </button>
                         <button class="sort-btn">
-                            Recents
-                            <i class="fas fa-list"></i>
+                            <span>Recents </span>
+                            <div class="icon"><i class="fas fa-list"></i></div>
                         </button>
+                        <div id="sort-and-view-picker">
+                            <!-- Sort options list -->
+                            <ul class="sort-list">
+                                <li class="section-title">Sort by</li>
+                                <li>
+                                    <span>Recents</span>
+                                </li>
+                                <li><span>Recently Added</span></li>
+                                <li><span>Alphabetical</span></li>
+                                <li><span>Creator</span></li>
+                            </ul>
+
+                            <!-- View options list -->
+                            <ul class="view-list">
+                                <li class="section-title">View as</li>
+                                <li class="view-modes">
+                                    <button
+                                        class="view-btn"
+                                        aria-label="Compact list"
+                                        data-tooltip="Compact list"
+                                        data-tooltip-dir="top"
+                                    >
+                                        <i class="fa-solid fa-bars"></i>
+                                    </button>
+                                    <button
+                                        class="view-btn active"
+                                        aria-label="List view"
+                                        data-tooltip="Default list"
+                                        data-tooltip-dir="top"
+                                    >
+                                        <i class="fa-solid fa-list"></i>
+                                    </button>
+                                    <button
+                                        class="view-btn"
+                                        aria-label="Compact grid"
+                                        data-tooltip="Compact grid"
+                                        data-tooltip-dir="top"
+                                    >
+                                        <i class="fa-solid fa-grip"></i>
+                                    </button>
+                                    <button
+                                        class="view-btn"
+                                        aria-label="Default grid"
+                                        data-tooltip="Default grid"
+                                        data-tooltip-dir="top"
+                                    >
+                                        <i
+                                            class="fa-solid fa-table-cells-large"
+                                        ></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="library-content">
@@ -119,11 +180,14 @@
                 <header class="main-header">
                     <div class="search-container">
                         <div class="search-box">
-                            <button class="home-btn">
+                            <button class="home-btn" data-tooltip="Home">
                                 <i class="fas fa-home"></i>
                             </button>
                             <div class="search-input-wrapper">
-                                <i class="fas fa-search search-icon"></i>
+                                <i
+                                    class="fas fa-search search-icon"
+                                    data-tooltip="Search"
+                                ></i>
                                 <input
                                     type="text"
                                     placeholder="What do you want to play?"
@@ -138,12 +202,15 @@
                             <button class="auth-btn login-btn">Log in</button>
                         </div>
                         <div class="user-menu">
-                            <button class="user-avatar" id="userAvatar">
-                                <img
-                                    src="placeholder.svg?height=32&width=32"
-                                    alt="User Avatar"
-                                />
-                            </button>
+                            <div class="user-info">
+                                <div class="user-email"></div>
+                                <button class="user-avatar" id="userAvatar">
+                                    <img
+                                        src="placeholder.svg?height=32&width=32"
+                                        alt="User Avatar"
+                                    />
+                                </button>
+                            </div>
                             <div class="user-dropdown" id="userDropdown">
                                 <div class="dropdown-item" id="logoutBtn">
                                     <i class="fas fa-sign-out-alt"></i>
@@ -472,26 +539,50 @@
                         </div>
                         <div class="player-artist">Noo Phước Thịnh</div>
                     </div>
-                    <button class="add-btn">
+                    <button
+                        class="add-btn"
+                        data-tooltip="Add to Liked Songs"
+                        data-tooltip-dir="top"
+                    >
                         <i class="fa-solid fa-plus"></i>
                     </button>
                 </div>
 
                 <div class="player-center">
                     <div class="player-controls">
-                        <button class="control-btn active">
+                        <button
+                            class="control-btn active"
+                            data-tooltip="Enable Shuffle"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-random"></i>
                         </button>
-                        <button class="control-btn">
+                        <button
+                            class="control-btn"
+                            data-tooltip="Previous"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-step-backward"></i>
                         </button>
-                        <button class="control-btn play-btn">
+                        <button
+                            class="control-btn play-btn"
+                            data-tooltip="Pause"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-pause"></i>
                         </button>
-                        <button class="control-btn">
+                        <button
+                            class="control-btn"
+                            data-tooltip="Next"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-step-forward"></i>
                         </button>
-                        <button class="control-btn">
+                        <button
+                            class="control-btn"
+                            data-tooltip="Enable repeat"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-redo"></i>
                         </button>
                     </div>
@@ -506,11 +597,19 @@
                 </div>
 
                 <div class="player-right">
-                    <button class="control-btn">
+                    <button
+                        class="control-btn"
+                        data-tooltip="Lyrics"
+                        data-tooltip-dir="top"
+                    >
                         <i class="fas fa-microphone"></i>
                     </button>
                     <div class="volume-container">
-                        <button class="control-btn">
+                        <button
+                            class="control-btn"
+                            data-tooltip="Mute"
+                            data-tooltip-dir="top"
+                        >
                             <i class="fas fa-volume-down"></i>
                         </button>
                         <div class="volume-bar">
@@ -518,7 +617,11 @@
                             <div class="volume-handle"></div>
                         </div>
                     </div>
-                    <button class="control-btn">
+                    <button
+                        class="control-btn"
+                        data-tooltip="Enter Fullscreen"
+                        data-tooltip-dir="top"
+                    >
                         <i class="fas fa-expand"></i>
                     </button>
                 </div>
@@ -544,36 +647,30 @@
                         </h1>
 
                         <form class="auth-form-content">
-                            <div class="form-group invalid">
+                            <div class="form-group">
                                 <input
                                     type="email"
                                     placeholder="Email address"
                                     class="form-input"
                                     id="signupEmail"
                                 />
-                                <div class="error-message">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span
-                                        >Please enter a valid email
-                                        address</span
-                                    >
-                                </div>
+                                <div class="error-message"></div>
                             </div>
 
                             <div class="form-group">
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    class="form-input"
-                                    id="signupPassword"
-                                />
-                                <div class="error-message">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span
-                                        >Password must be at least 8
-                                        characters</span
-                                    >
+                                <div class="form-input-wrapper">
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        class="form-input"
+                                        id="signupPassword"
+                                    />
+                                    <button type="button" class="password-eye">
+                                        <i class="fa-solid fa-eye-slash"></i>
+                                    </button>
                                 </div>
+
+                                <div class="error-message"></div>
                             </div>
 
                             <button type="submit" class="auth-submit-btn">
@@ -594,33 +691,30 @@
                         <h1 class="modal-heading">Log in to Spotify</h1>
 
                         <form class="auth-form-content">
-                            <div class="form-group invalid">
+                            <div class="form-group">
                                 <input
                                     type="email"
                                     placeholder="Email address"
                                     class="form-input"
                                     id="loginEmail"
                                 />
-                                <div class="error-message">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span
-                                        >Please enter a valid email
-                                        address</span
-                                    >
-                                </div>
+                                <div class="error-message"></div>
                             </div>
 
                             <div class="form-group">
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    class="form-input"
-                                    id="loginPassword"
-                                />
-                                <div class="error-message">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span>Please enter your password</span>
+                                <div class="form-input-wrapper">
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        class="form-input"
+                                        id="loginPassword"
+                                    />
+                                    <button type="button" class="password-eye">
+                                        <i class="fa-solid fa-eye-slash"></i>
+                                    </button>
                                 </div>
+
+                                <div class="error-message"></div>
                             </div>
 
                             <button type="submit" class="auth-submit-btn">
@@ -639,6 +733,9 @@
             </div>
         </div>
 
-        <script src="main.js"></script>
+        <div id="toast-container"></div>
+        <div id="global-tooltip"></div>
+
+        <script src="main.js" type="module"></script>
     </body>
 </html>

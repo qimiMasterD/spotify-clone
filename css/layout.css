@@ -100,9 +100,12 @@
 }
 
 .auth-buttons {
-    display: flex;
+    display: none;
     align-items: center;
     gap: var(--spacing-md);
+}
+.auth-buttons.show {
+    display: flex;
 }
 
 .content-wrapper {

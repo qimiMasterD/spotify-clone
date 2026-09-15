@@ -176,6 +176,7 @@
 
 /* Search library */
 .search-library {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -212,7 +213,9 @@
     align-items: center;
     gap: var(--spacing-sm);
 }
-
+.sort-btn .icon {
+    width: 15px;
+}
 .sort-btn:hover {
     color: var(--text-primary);
 }
@@ -237,7 +240,7 @@
     border-radius: var(--radius-xl);
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 15px;
     transition: all var(--transition-fast);
 }
 
@@ -252,12 +255,13 @@
 
 .search-icon {
     position: absolute;
-    left: var(--spacing-md);
+    left: var(--spacing-sm);
     top: 50%;
     transform: translateY(-50%);
     font-size: 16px;
     color: var(--text-muted);
-    pointer-events: none;
+    padding: 5px;
+    cursor: pointer;
 }
 
 /* Library items */
@@ -800,6 +804,23 @@
     font-size: 16px;
     transition: all var(--transition-fast);
 }
+.form-input-wrapper {
+    position: relative;
+}
+
+#signupPassword {
+    padding-right: var(--spacing-lg);
+}
+
+.password-eye {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
+.password-eye i {
+    color: var(--accent-primary);
+}
 
 .form-input:focus {
     outline: none;
@@ -819,6 +840,8 @@
     margin-top: var(--spacing-sm);
     color: #f87171;
     font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .error-message i {
@@ -883,8 +906,17 @@
 /* User Menu */
 .user-menu {
     position: relative;
+    display: none;
+    align-items: center;
+}
+.user-menu.show {
+    display: flex;
+}
+
+.user-info {
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 .user-avatar {
@@ -1097,4 +1129,169 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 400;
+}
+
+/* Toast */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+}
+
+.custom-toast {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 12px 16px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.custom-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.custom-toast.success {
+    border-left: 4px solid #22c55e;
+}
+.custom-toast.error {
+    border-left: 4px solid #ef4444;
+}
+
+/* Tooltip */
+#global-tooltip {
+    position: fixed;
+    background-color: #242424;
+    color: #ffffff;
+    max-width: max-content;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.5),
+        0 1px 3px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.15s;
+    z-index: 9999;
+}
+
+#global-tooltip.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sort and view picker */
+#sort-and-view-picker {
+    background: #242424;
+    color: #b3b3b3;
+    font-family: sans-serif;
+    font-size: 14px;
+    width: 200px;
+    padding: 6px;
+    border-radius: 8px;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.5);
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+}
+#sort-and-view-picker.active {
+    display: block;
+}
+
+#sort-and-view-picker ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Section Headings */
+#sort-and-view-picker .section-title {
+    color: #727272;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 12px 4px;
+}
+
+/* Sort List Items */
+.sort-list li:not(.section-title) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.sort-list li:not(.section-title):hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.view-btn:hover {
+    color: #fff;
+}
+.view-btn.active {
+    background: #282828;
+}
+/* Active Option (Recents) */
+.sort-list li.active,
+.check-icon,
+.view-btn.active {
+    color: #1ed760; /* Spotify Green */
+}
+
+/* Divider Line */
+.sort-list {
+    border-bottom: 1px solid #3e3e3e;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+}
+
+/* View Modes Container */
+.view-modes {
+    display: flex;
+    background: #121212;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 8px;
+    margin-top: 4px;
+}
+
+/* View Mode Buttons */
+.view-btn {
+    flex: 1;
+    height: 36px;
+    background: transparent;
+    border: none;
+    color: #b3b3b3;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

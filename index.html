@@ -21,7 +21,7 @@
             <aside class="sidebar">
                 <div class="sidebar-header">
                     <div class="logo">
-                        <i class="fab fa-spotify"></i>
+                        <i id="main-icon" class="fab fa-spotify"></i>
                     </div>
                 </div>
 
@@ -39,8 +39,9 @@
                     </div>
 
                     <div class="nav-tabs">
-                        <button class="nav-tab active">Playlists</button>
+                        <button class="nav-tab">Playlists</button>
                         <button class="nav-tab">Artists</button>
+                        <button class="nav-tab">Albums</button>
                     </div>
 
                     <div class="search-library">
@@ -522,6 +523,125 @@
                             </div>
                         </div>
                     </section>
+
+                    <!-- Playlist -->
+                    <section class="playlist-view">
+                        <!-- Playlist Header -->
+                        <div class="playlist-header">
+                            <div class="playlist-image">
+                                <i class="fa-solid fa-music fa-4x"></i>
+                                <div class="editor-mode">
+                                    <i class="fa-solid fa-pencil"></i>
+                                    <span>Choose photo</span>
+                                </div>
+                            </div>
+                            <div class="playlist-info">
+                                <span class="playlist-type"
+                                    >Public Playlist</span
+                                >
+                                <h1 class="playlist-title">My Playlist #2</h1>
+                            </div>
+                        </div>
+
+                        <!-- Actions Toolbar -->
+                        <div class="playlist-actions-bar">
+                            <div class="left-actions"></div>
+                            <div class="right-actions">
+                                <button class="list-view-btn">
+                                    List
+                                    <i class="fa-solid fa-list-ul"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Search Section -->
+                        <div class="playlist-search-section">
+                            <div class="search-header">
+                                <h2>Let's find something for your playlist</h2>
+                                <button
+                                    class="close-search-btn"
+                                    aria-label="Close search"
+                                >
+                                    <i class="fa-solid fa-xmark fa-lg"></i>
+                                </button>
+                            </div>
+                            <div class="search-input-container">
+                                <i
+                                    class="fa-solid fa-magnifying-glass search-icon"
+                                ></i>
+                                <input
+                                    type="text"
+                                    placeholder="Search for songs or episodes"
+                                    class="search-input"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Tracks -->
+                        <div class="track-list">
+                            <div class="track-item">
+                                <div class="track-number">1</div>
+                                <div class="track-image">
+                                    <img
+                                        src="placeholder.svg?height=40&width=40"
+                                        alt="Cho Tôi Lang Thang"
+                                    />
+                                </div>
+                                <div class="track-info">
+                                    <div class="track-name">
+                                        Cho Tôi Lang Thang
+                                    </div>
+                                </div>
+                                <div class="track-plays">27,498,341</div>
+                                <div class="track-duration">4:18</div>
+                                <button class="track-menu-btn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+
+                            <div class="track-item playing">
+                                <div class="track-number">
+                                    <i
+                                        class="fas fa-volume-up playing-icon"
+                                    ></i>
+                                </div>
+                                <div class="track-image">
+                                    <img
+                                        src="placeholder.svg?height=40&width=40"
+                                        alt="Lối Nhỏ"
+                                    />
+                                </div>
+                                <div class="track-info">
+                                    <div class="track-name playing-text">
+                                        Lối Nhỏ
+                                    </div>
+                                </div>
+                                <div class="track-plays">45,686,866</div>
+                                <div class="track-duration">4:12</div>
+                                <button class="track-menu-btn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+
+                            <div class="track-item">
+                                <div class="track-number">3</div>
+                                <div class="track-image">
+                                    <img
+                                        src="placeholder.svg?height=40&width=40"
+                                        alt="Cho Minh Em"
+                                    />
+                                </div>
+                                <div class="track-info">
+                                    <div class="track-name">Cho Minh Em</div>
+                                </div>
+                                <div class="track-plays">20,039,024</div>
+                                <div class="track-duration">3:26</div>
+                                <button class="track-menu-btn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </main>
 
@@ -733,8 +853,99 @@
             </div>
         </div>
 
+        <!-- Modal Overlay Backdrop -->
+        <div id="modal-playlist">
+            <!-- Modal Container -->
+            <div
+                class="modal-container"
+                role="dialog"
+                aria-labelledby="modal-title"
+            >
+                <!-- Header -->
+                <div class="modal-header">
+                    <h2 id="modal-title" class="modal-title">Edit details</h2>
+                    <button class="btn-close" aria-label="Close modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Body Content -->
+                <div class="modal-body">
+                    <!-- Image Cover Upload Area -->
+                    <div class="cover-upload-container">
+                        <label for="playlist-image-input">
+                            <img
+                                src="https://via.placeholder.com/200"
+                                alt="Playlist cover image"
+                                class="cover-image"
+                                onerror="
+                                    this.onerror = null;
+                                    this.src = './assets/img/placeholder.svg';
+                                "
+                            />
+
+                            <div class="cover-overlay">
+                                <i class="fa-solid fa-pencil"></i>
+                                <span>Choose photo</span>
+                            </div>
+                        </label>
+                    </div>
+                    <input
+                        type="file"
+                        id="playlist-image-input"
+                        accept="image/*"
+                        hidden
+                    />
+
+                    <!-- Form Fields -->
+                    <div class="modal-form">
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                id="playlist-title"
+                                class="input-field"
+                                value="My Playlist #2"
+                                placeholder="Add a name"
+                            />
+                        </div>
+
+                        <div class="input-group fieldset-group">
+                            <label
+                                for="playlist-description"
+                                class="fieldset-label"
+                                >Description</label
+                            >
+                            <textarea
+                                id="playlist-description"
+                                class="input-field textarea-field"
+                                placeholder="Add an optional description"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer / Actions -->
+                <div class="modal-footer">
+                    <button class="btn-private">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Make private</span>
+                    </button>
+
+                    <button class="btn-save">Save</button>
+                </div>
+
+                <!-- Legal Notice -->
+                <p class="modal-disclaimer">
+                    By proceeding, you agree to give Spotify access to the image
+                    you choose to upload. Please make sure you have the right to
+                    upload the image.
+                </p>
+            </div>
+        </div>
+
         <div id="toast-container"></div>
         <div id="global-tooltip"></div>
+        <ul id="library-context-menu"></ul>
 
         <script src="main.js" type="module"></script>
     </body>

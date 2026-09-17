@@ -265,6 +265,7 @@
 }
 
 /* Library items */
+/* Shared base styles */
 .library-item {
     display: flex;
     align-items: center;
@@ -273,6 +274,9 @@
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all var(--transition-fast);
+}
+.library-item.hidden {
+    display: none;
 }
 
 .library-item:hover {
@@ -341,12 +345,118 @@
     color: var(--accent-primary);
 }
 
+/* 1. Compact List View (Image 1) */
+
+.library-content.view-compact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.library-content.view-compact-list .library-item {
+    padding: 4px 8px;
+    gap: 0;
+}
+
+.library-content.view-compact-list .item-image,
+.library-content.view-compact-list .item-icon {
+    display: none;
+}
+
+.library-content.view-compact-list .item-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.library-content.view-compact-list .item-title {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.library-content.view-compact-list .item-subtitle::before {
+    content: "•";
+    margin-right: 6px;
+}
+.library-content.view-compact-list .item-subtitle .none {
+    display: none;
+}
+
+/* 2. Default List View (Image 2) */
+
+.library-content.view-default-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* 3. Compact Grid View (Image 3) */
+
+.library-content.view-compact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.library-content.view-compact-grid .library-item {
+    padding: 0;
+    background: transparent;
+    aspect-ratio: 1 / 1;
+}
+
+.library-content.view-compact-grid .library-item:hover {
+    background-color: transparent;
+    opacity: 0.8;
+}
+
+.library-content.view-compact-grid .item-info {
+    display: none;
+}
+
+.library-content.view-compact-grid .item-image,
+.library-content.view-compact-grid .item-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-sm);
+}
+
+/* 4. Default Grid View (Image 4) */
+
+.library-content.view-default-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+}
+
+.library-content.view-default-grid .library-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-sm);
+    min-width: 0;
+}
+
+.library-content.view-default-grid .item-image,
+.library-content.view-default-grid .item-icon {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin-bottom: var(--spacing-xs);
+}
+
+.library-content.view-default-grid .item-info {
+    width: 100%;
+}
+
 /* Artist Hero */
 .artist-hero {
+    display: none;
     position: relative;
     height: 340px;
     margin: 0 -24px var(--spacing-lg) -24px;
     overflow: hidden;
+}
+.artist-hero.show {
+    display: block;
 }
 
 .hero-background {
@@ -409,10 +519,13 @@
 
 /* Artist Controls */
 .artist-controls {
-    display: flex;
+    display: none;
     align-items: center;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-2xl);
+}
+.artist-controls.show {
+    display: flex;
 }
 
 .play-btn-large {
@@ -439,7 +552,11 @@
 
 /* Track List */
 .popular-section {
+    display: none;
     margin-bottom: var(--spacing-2xl);
+}
+.popular-section.show {
+    display: block;
 }
 
 .section-title {
@@ -995,6 +1112,10 @@
 .artists-section {
     margin-bottom: var(--spacing-2xl);
 }
+.hits-section.hidden,
+.artists-section.hidden {
+    display: none;
+}
 
 .section-header {
     display: flex;
@@ -1294,4 +1415,137 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* context menu */
+#library-context-menu {
+    background-color: #282828;
+    border-radius: 4px;
+    padding: 4px;
+    box-shadow:
+        0 16px 24px rgba(0, 0, 0, 0.5),
+        0 6px 8px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+    display: none;
+    z-index: 99;
+}
+#library-context-menu.show {
+    display: block;
+    position: fixed;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    height: 40px;
+    border-radius: 2px;
+    color: #b3b3b3;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.menu-item:hover {
+    background-color: #3e3e3e;
+    color: #ffffff;
+}
+
+.menu-item i {
+    font-size: 16px;
+    width: 16px;
+    text-align: center;
+    color: #b3b3b3;
+}
+
+.menu-item:hover i {
+    color: #ffffff;
+}
+
+/* Green icon for Unfollow */
+.menu-item.green-icon i {
+    color: #1ed760;
+}
+
+/* Solid green filled badge for "Remove from Your Library" */
+.menu-item.green-check i {
+    color: #1ed760;
+    background: #1ed760;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.menu-item span {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Trailing icons */
+.menu-item .external-icon,
+.menu-item .submenu-icon {
+    font-size: 14px;
+    margin-left: auto;
+    color: #b3b3b3;
+}
+
+/* Horizontal separator */
+.menu-divider {
+    height: 1px;
+    background-color: #3e3e3e;
+    margin: 4px 0;
+}
+
+#main-icon {
+    cursor: pointer;
+}
+
+/* Liked Songs icon */
+.playlist-image {
+    position: relative;
+}
+
+.playlist-image.liked-songs {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #450af5 0%, #c4ebd9 100%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playlist-image.liked-songs i {
+    color: #ffffff;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.editor-mode {
+    display: none;
+    background-color: var(--bg-tertiary);
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.editor-mode.show {
+    display: flex;
+}
+.editor-mode i {
+    font-size: 3rem;
+}
+.editor-mode span {
+    font-size: 1rem;
+    font-family: "inter", sans-serif;
 }

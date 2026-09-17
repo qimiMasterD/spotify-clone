@@ -44,4 +44,15 @@
     --z-player: 30;
     --z-modal: 40;
     --z-tooltip: 50;
+
+    /* Additional UI colors for Modal */
+    --modal-bg: #282828;
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    --input-bg: #3e3e3e;
+    --input-bg-focus: #333333;
+    --input-border: #535353;
+    --input-placeholder: #a7a7a7;
+    --btn-save-bg: #ffffff;
+    --btn-save-text: #000000;
+    --btn-save-hover: #f0f0f0;
 }

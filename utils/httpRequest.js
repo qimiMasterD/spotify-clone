@@ -10,10 +10,16 @@ class HttpRequest {
                 method,
                 headers: {
                     ...options.headers,
-                    "Content-Type": "application/json",
                 },
             };
-            if (data) _options.body = JSON.stringify(data);
+            if (data) {
+                const dataType = _options.headers["Content-Type"];
+                if (data instanceof FormData) _options.body = data;
+                else {
+                    _options.headers["Content-Type"] = "application/json";
+                    _options.body = JSON.stringify(data);
+                }
+            }
 
             const accessToken = localStorage.getItem("accessToken");
             if (accessToken) {
@@ -32,28 +38,29 @@ class HttpRequest {
 
             return response;
         } catch (error) {
+            console.log(path);
             throw error;
         }
     }
 
-    async get(path, options) {
-        return await this.#send(path, "GET", null, options);
+    get(path, options) {
+        return this.#send(path, "GET", null, options);
     }
 
-    async post(path, data, options) {
-        return await this.#send(path, "POST", data, options);
+    post(path, data, options) {
+        return this.#send(path, "POST", data, options);
     }
 
-    async put(path, data, options) {
-        return await this.#send(path, "PUT", data, options);
+    put(path, data, options) {
+        return this.#send(path, "PUT", data, options);
     }
 
-    async patch(path, data, options) {
-        return await this.#send(path, "PATCH", data, options);
+    patch(path, data, options) {
+        return this.#send(path, "PATCH", data, options);
     }
 
-    async del(path, options) {
-        return await this.#send(path, "DELETE", null, options);
+    del(path, options) {
+        return this.#send(path, "DELETE", null, options);
     }
 }
 
